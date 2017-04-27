@@ -28,6 +28,7 @@
  */
 
 // Useful masks and values for bit twiddling
+var hex2decimal = require('hex2decimal');
 var MASK31 =  0x7fffffff, VAL31 = 0x80000000;
 var MASK32 =  0xffffffff, VAL32 = 0x100000000;
 
@@ -187,7 +188,7 @@ Int64.prototype = {
    * @param radix Just like Number#toString()'s radix
    */
   toString: function(radix) {
-    return this.valueOf().toString(radix || 10);
+    return hex2decimal(this.toOctetString(), radix);
   },
 
   /**

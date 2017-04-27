@@ -9,7 +9,9 @@
   ],
   "author": "Robert Kieffer <robert@broofa.com>",
   "contributors": [],
-  "dependencies": {},
+  "dependencies": {
+    "hex2decimal": "^0.1.1"
+  },
   "license": "MIT",
   "lib": ".",
   "main": "./Int64.js",
