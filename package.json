@@ -10,7 +10,8 @@
   "author": "Robert Kieffer <robert@broofa.com>",
   "contributors": [],
   "dependencies": {
-    "hex2decimal": "^0.1.1"
+    "hex2decimal": "^0.1.1",
+    "int64": "0.0.5"
   },
   "license": "MIT",
   "lib": ".",

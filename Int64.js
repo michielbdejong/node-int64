@@ -1,3 +1,5 @@
+const dectohex = require('int64').dectohex
+
 //     Int64.js
 //
 //     Copyright (c) 2012 Robert Kieffer
@@ -51,7 +53,7 @@ for (var i = 0; i < 256; i++) {
  * new Int64(number)             - Number (throws if n is outside int64 range)
  * new Int64(hi, lo)             - Raw bits as two 32-bit values
  */
-var Int64 = module.exports = function(a1, a2) {
+var Int64 = module.exports = function(a1, a2, decimal = false) {
   if (a1 instanceof Buffer) {
     this.buffer = a1;
     this.offset = a2 || 0;
@@ -100,7 +102,7 @@ Int64.prototype = {
    * setValue(number) - Number (throws if n is outside int64 range)
    * setValue(hi, lo) - Raw bits as two 32-bit values
    */
-  setValue: function(hi, lo) {
+  setValue: function(hi, lo, decimal) {
     var negate = false;
     if (arguments.length == 1) {
       if (typeof(hi) == 'number') {
@@ -113,6 +115,9 @@ Int64.prototype = {
         if (hi > VAL32) throw new RangeError(hi  + ' is outside Int64 range');
         hi = hi | 0;
       } else if (typeof(hi) == 'string') {
+        if (decimal) {
+          hi = dectohex(hi)
+        }
         hi = (hi + '').replace(/^0x/, '');
         lo = hi.substr(-8);
         hi = hi.length > 8 ? hi.substr(0, hi.length - 8) : '';
